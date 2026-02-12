@@ -14,6 +14,7 @@ export type RegisterRequest = {
   phoneCountryCode: string
   phoneNumber: string
   fullName?: string
+  roles: string[]
 }
 
 export type LoginRequest = {

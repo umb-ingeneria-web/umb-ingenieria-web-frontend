@@ -20,7 +20,7 @@ export default function RegisterPage() {
   const [phone, setPhone] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   const [acceptedTerms, setAcceptedTerms] = useState(false)
-  // const [accountType, setAccountType] = useState<'SELLER' | 'COMPANY'>('SELLER')
+  const [accountType, setAccountType] = useState<'ADMIN' | 'USER'>('USER')
 
 
   async function onSubmit(e: React.FormEvent) {
@@ -39,6 +39,7 @@ export default function RegisterPage() {
           phoneCountryCode: '57',
           phoneNumber: phone,
           fullName: fullName ? fullName : undefined,
+          roles: [accountType],
         }),
       ).unwrap()
 
@@ -74,35 +75,35 @@ export default function RegisterPage() {
             </Link>
           </div>
 
-          {/* <div className="mt-8 rounded-xl bg-[rgba(17,24,39,0.04)] p-1">
+          <div className="mt-8 rounded-xl bg-[rgba(17,24,39,0.04)] p-1">
             <div className="grid grid-cols-2 gap-1">
               <button
                 type="button"
-                onClick={() => setAccountType('SELLER')}
+                onClick={() => setAccountType('ADMIN')}
                 className={
-                  accountType === 'SELLER'
+                  accountType === 'ADMIN'
                     ? 'flex items-center justify-center gap-2 rounded-lg bg-white px-3 py-2 text-sm font-medium text-[var(--color-text)] shadow-sm'
                     : 'flex items-center justify-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-[var(--color-text-muted)]'
                 }
               >
                 <UserIcon className="h-4 w-4" />
-                Vendedor
+                Administrador
               </button>
 
               <button
                 type="button"
-                onClick={() => setAccountType('COMPANY')}
+                onClick={() => setAccountType('USER')}
                 className={
-                  accountType === 'COMPANY'
+                  accountType === 'USER'
                     ? 'flex items-center justify-center gap-2 rounded-lg bg-white px-3 py-2 text-sm font-medium text-[var(--color-text)] shadow-sm'
                     : 'flex items-center justify-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-[var(--color-text-muted)]'
                 }
               >
-                <BuildingIcon className="h-4 w-4" />
-                Empresa
+                <UserIcon className="h-4 w-4" />
+                Usuario
               </button>
             </div>
-          </div> */}
+          </div>
 
           <form className="mt-8 space-y-6" onSubmit={onSubmit}>
             <div>
