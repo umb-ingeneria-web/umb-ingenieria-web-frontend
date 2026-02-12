@@ -1,0 +1,62 @@
+:root {
+  --color-bg: #0b1220;
+  --color-bg-main: #0b1220;
+  --color-surface: #0f1a2e;
+  --color-surface-2: #162646;
+  --color-text: #e7eefc;
+  --color-text-muted: #a8b6d6;
+
+  --color-primary: #ff6a00;
+  --color-primary-600: #e95d00;
+  --color-danger: #ff4d6d;
+  --color-success: #2bd4a5;
+
+  --sidebar-bg: var(--color-surface);
+  --sidebar-text: var(--color-text);
+  --sidebar-active-bg: rgba(255, 106, 0, 0.18);
+
+  --button-bg: var(--color-primary);
+  --button-bg-hover: var(--color-primary-600);
+  --button-text: #ffffff;
+
+  --input-bg: rgba(255, 255, 255, 0.06);
+  --input-border: rgba(255, 255, 255, 0.14);
+  --input-border-focus: rgba(255, 106, 0, 0.7);
+}
+
+html[data-theme='light'] {
+  --color-bg-main: rgb(252,252,252);
+  --color-bg: white;
+  --color-surface: #ffffff;
+  --color-surface-2: #f2f2f3;
+  --color-text: #111827;
+  --color-text-muted: #6b7280;
+
+  --color-primary: #ff6a00;
+  --color-primary-600: #e95d00;
+  --color-danger: #e11d48;
+  --color-success: #059669;
+
+  --sidebar-bg: var(--color-surface);
+  --sidebar-text: var(--color-text);
+  --sidebar-active-bg: rgba(255, 106, 0, 0.12);
+
+  --button-bg: var(--color-primary);
+  --button-bg-hover: var(--color-primary-600);
+  --button-text: #ffffff;
+
+  --input-bg: #ffffff;
+  --input-border: rgba(17, 24, 39, 0.12);
+  --input-border-focus: rgba(255, 106, 0, 0.55);
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+}
