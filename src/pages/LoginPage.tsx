@@ -47,7 +47,7 @@ export default function LoginPage() {
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--color-primary)] text-white font-semibold">
               H
             </div>
-            <div className="text-lg font-semibold">Harold Software</div>
+            <div className="text-lg font-semibold">SchedU</div>
           </div>
 
           <div className="mt-8">
