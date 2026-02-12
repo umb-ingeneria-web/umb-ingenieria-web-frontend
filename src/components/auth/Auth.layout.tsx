@@ -29,22 +29,21 @@ function LateralInfo() {
         </div>
 
         <h2 className="text-4xl font-bold leading-tight">
-          Transforma tu tiempo en ingresos
+          SchedU
         </h2>
         <p className="mt-4 max-w-md text-lg text-[rgba(255,255,255,0.90)]">
-          Únete a cientos de vendedores que ya generan ingresos extra vendiendo servicios
-          de empresas líderes.
+          Únete a los esrudiantes para asi lograr crear un mejor horario.
         </p>
 
         <div className="mt-8 grid max-w-lg grid-cols-2 gap-4">
           <div className="rounded-2xl bg-[rgba(0,0,0,0.10)] p-4">
-            <div className="text-2xl font-bold">$2M+</div>
+            <div className="text-2xl font-bold">Mejor organizacion </div>
             <div className="mt-1 text-xs text-[rgba(255,255,255,0.90)]">
               En comisiones pagadas
             </div>
           </div>
           <div className="rounded-2xl bg-[rgba(0,0,0,0.10)] p-4">
-            <div className="text-2xl font-bold">500+</div>
+            <div className="text-2xl font-bold">Menos Estres</div>
             <div className="mt-1 text-xs text-[rgba(255,255,255,0.90)]">
               Vendedores activos
             </div>
