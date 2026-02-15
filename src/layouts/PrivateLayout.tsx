@@ -130,10 +130,10 @@ export default function PrivateLayout() {
             <div className="flex items-center justify-between gap-3">
               <div className="flex items-center gap-3">
                 <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[var(--color-primary)] text-sm font-semibold text-white">
-                  H
+                  U
                 </div>
                 <div className="min-w-0">
-                  <div className="truncate font-semibold">Harold Software</div>
+                  <div className="truncate font-semibold">UMB Planifica</div>
                 </div>
               </div>
 
@@ -184,7 +184,7 @@ export default function PrivateLayout() {
                   aria-expanded={userMenuOpen}
                 >
                   <div className="flex min-w-0 items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[rgba(255,106,0,0.12)] text-sm font-semibold text-[var(--color-primary)]">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[rgba(152,31,28,0.12)] text-sm font-semibold text-[var(--color-primary)]">
                       {displayName.slice(0, 1).toUpperCase()}
                     </div>
                     <div className="min-w-0 text-left">
@@ -324,11 +324,11 @@ export default function PrivateLayout() {
 function getSectionTitle(pathname: string) {
   if (pathname.startsWith('/app/dashboard')) return 'Dashboard'
   if (pathname.startsWith('/app/admin/users')) return 'Usuarios'
-  if (pathname.startsWith('/app/services')) return 'Servicios'
-  if (pathname.startsWith('/app/training')) return 'Capacitaciones'
-  if (pathname.startsWith('/app/sales')) return 'Ventas'
-  if (pathname.startsWith('/app/commissions')) return 'Comisiones'
-  if (pathname.startsWith('/app/payouts')) return 'Payouts'
+  if (pathname.startsWith('/app/pre-registro')) return 'Pre-registro'
+  if (pathname.startsWith('/app/historial')) return 'Historial académico'
+  if (pathname.startsWith('/app/materias')) return 'Materias'
+  if (pathname.startsWith('/app/horarios')) return 'Horarios'
+  if (pathname.startsWith('/app/demanda')) return 'Analítica de demanda'
   if (pathname.startsWith('/app/settings')) return 'Configuración'
   if (pathname.startsWith('/app/profile')) return 'Perfil'
   return 'Dashboard'

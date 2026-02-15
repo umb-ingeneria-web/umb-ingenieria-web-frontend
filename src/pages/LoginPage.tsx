@@ -45,9 +45,9 @@ export default function LoginPage() {
 
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--color-primary)] text-white font-semibold">
-              H
+              U
             </div>
-            <div className="text-lg font-semibold">SchedU</div>
+            <div className="text-lg font-semibold">UMB Planifica</div>
           </div>
 
           <div className="mt-8">

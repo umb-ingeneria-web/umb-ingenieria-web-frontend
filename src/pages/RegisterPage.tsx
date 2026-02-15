@@ -56,15 +56,15 @@ export default function RegisterPage() {
         <div className="w-full max-w-md">
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--color-primary)] text-white font-semibold">
-              H
+              U
             </div>
-            <div className="text-lg font-semibold">Harold Software</div>
+            <div className="text-lg font-semibold">UMB Planifica</div>
           </div>
 
           <div className="mt-10">
             <h1 className="text-4xl font-semibold">Crea tu cuenta</h1>
             <p className="mt-3 text-base text-[var(--color-text-muted)]">
-              Empieza a vender y ganar comisiones
+              Planifica tu próximo semestre y asegura tus cupos
             </p>
           </div>
 
