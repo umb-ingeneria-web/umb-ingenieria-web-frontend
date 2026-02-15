@@ -29,7 +29,7 @@ function LateralInfo() {
         </div>
 
         <h2 className="text-4xl font-bold leading-tight">
-          SchedU
+          UMB Planifica
         </h2>
         <p className="mt-4 max-w-md text-lg text-[rgba(255,255,255,0.90)]">
           Únete a los esrudiantes para asi lograr crear un mejor horario.
