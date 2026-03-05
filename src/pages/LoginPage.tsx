@@ -23,9 +23,17 @@ export default function LoginPage() {
     e.preventDefault()
 
     try {
-      await dispatch(loginUser({ email, password })).unwrap()
+      const result = await dispatch(loginUser({ email, password })).unwrap()
+      void result
       toast.success('Bienvenido')
-      navigate('/app/dashboard', { replace: true })
+      // Leer el role desde el store luego del login (importación estática ya resuelve)
+      const { store } = await import('../app/store')
+      const role = store.getState().auth.activeRole
+      if (role === 'ESTUDIANTE') {
+        navigate('/app/estudiante/home', { replace: true })
+      } else {
+        navigate('/app/dashboard', { replace: true })
+      }
     } catch (err) {
       toast.error(err instanceof Error ? err.message : 'No fue posible iniciar sesión')
     }

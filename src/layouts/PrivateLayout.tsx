@@ -33,6 +33,8 @@ export default function PrivateLayout() {
   const prevPathnameRef = useRef(location.pathname)
 
   const canSeeAdmin = activeRole === 'ADMIN'
+  const canSeeGestor = activeRole === 'ADMIN' || activeRole === 'GESTOR'
+  const isEstudiante = activeRole === 'ESTUDIANTE'
 
   useEffect(() => {
     if (accessToken && !user && !loading) {
@@ -97,7 +99,13 @@ export default function PrivateLayout() {
   }
 
   const displayName = user?.fullName || user?.email || 'Usuario'
-  const roleBadge = activeRole === 'ADMIN' ? 'Administrador' : activeRole ?? 'Usuario'
+  const roleLabelMap: Record<string, string> = {
+    ADMIN: 'Administrador',
+    GESTOR: 'Gestor',
+    ESTUDIANTE: 'Estudiante',
+    USER: 'Usuario',
+  }
+  const roleBadge = roleLabelMap[activeRole ?? ''] ?? activeRole ?? 'Usuario'
 
   const sectionTitle = getSectionTitle(location.pathname)
 
@@ -105,10 +113,18 @@ export default function PrivateLayout() {
     to: string
     label: string
     icon: ReactNode
-    adminOnly?: boolean
+    show: boolean
   }> = [
-      { to: '/app/dashboard', label: 'Dashboard', icon: <DashboardIcon className="h-4 w-4" /> },
-      { to: '/app/admin/users', label: 'Usuarios', icon: <UserIcon className="h-4 w-4" />, adminOnly: true },
+      { to: '/app/estudiante/home', label: 'Inicio', icon: <HomeIcon className="h-4 w-4" />, show: isEstudiante },
+      { to: '/app/estudiante/carrera', label: 'Mi carrera', icon: <GraduationIcon className="h-4 w-4" />, show: isEstudiante },
+      { to: '/app/estudiante/historial', label: 'Historial PDF', icon: <FileIcon className="h-4 w-4" />, show: isEstudiante },
+      { to: '/app/estudiante/oferta', label: 'Oferta académica', icon: <BookIcon className="h-4 w-4" />, show: isEstudiante },
+      { to: '/app/estudiante/preregistro', label: 'Mi pre-registro', icon: <ListIcon className="h-4 w-4" />, show: isEstudiante },
+      { to: '/app/dashboard', label: 'Dashboard', icon: <DashboardIcon className="h-4 w-4" />, show: !isEstudiante },
+      { to: '/app/gestor/carreras', label: 'Carreras', icon: <GraduationIcon className="h-4 w-4" />, show: canSeeGestor },
+      { to: '/app/gestor/materias', label: 'Materias', icon: <BookIcon className="h-4 w-4" />, show: canSeeGestor },
+      { to: '/app/admin/periodo', label: 'Periodo', icon: <CalendarIcon className="h-4 w-4" />, show: canSeeAdmin },
+      { to: '/app/admin/users', label: 'Usuarios', icon: <UserIcon className="h-4 w-4" />, show: canSeeAdmin },
     ]
 
   return (
@@ -155,7 +171,7 @@ export default function PrivateLayout() {
 
             <nav className="mt-4 flex flex-col gap-1">
               {menuItems
-                .filter((i) => (i.adminOnly ? canSeeAdmin : true))
+                .filter((i) => i.show)
                 .map((item) => (
                   <NavLink
                     key={item.to}
@@ -322,16 +338,74 @@ export default function PrivateLayout() {
 }
 
 function getSectionTitle(pathname: string) {
+  if (pathname.startsWith('/app/estudiante/home')) return 'Inicio'
+  if (pathname.startsWith('/app/estudiante/carrera')) return 'Selección de carrera'
+  if (pathname.startsWith('/app/estudiante/historial')) return 'Historial académico'
+  if (pathname.startsWith('/app/estudiante/oferta')) return 'Oferta académica'
+  if (pathname.startsWith('/app/estudiante/preregistro')) return 'Mi pre-registro'
   if (pathname.startsWith('/app/dashboard')) return 'Dashboard'
   if (pathname.startsWith('/app/admin/users')) return 'Usuarios'
-  if (pathname.startsWith('/app/pre-registro')) return 'Pre-registro'
-  if (pathname.startsWith('/app/historial')) return 'Historial académico'
-  if (pathname.startsWith('/app/materias')) return 'Materias'
-  if (pathname.startsWith('/app/horarios')) return 'Horarios'
-  if (pathname.startsWith('/app/demanda')) return 'Analítica de demanda'
-  if (pathname.startsWith('/app/settings')) return 'Configuración'
+  if (pathname.startsWith('/app/admin/periodo')) return 'Periodo de pre-registro'
+  if (pathname.startsWith('/app/gestor/carreras')) return 'Carreras'
+  if (pathname.startsWith('/app/gestor/materias')) return 'Materias'
   if (pathname.startsWith('/app/profile')) return 'Perfil'
-  return 'Dashboard'
+  return 'Panel'
+}
+
+function HomeIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" {...props}>
+      <path d="M3 12L12 3l9 9" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M9 21V12h6v9" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M5 10v11h14V10" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  )
+}
+
+function GraduationIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" {...props}>
+      <path d="M22 9L12 5 2 9l10 4 10-4z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+      <path d="M6 11v5c0 2.21 2.69 4 6 4s6-1.79 6-4v-5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+      <path d="M22 9v6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+    </svg>
+  )
+}
+
+function BookIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" {...props}>
+      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+      <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+    </svg>
+  )
+}
+
+function FileIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" {...props}>
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+      <path d="M14 2v6h6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M9 13h6M9 17h4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+    </svg>
+  )
+}
+
+function ListIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" {...props}>
+      <path d="M9 6h11M9 12h11M9 18h11M5 6v.01M5 12v.01M5 18v.01" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+    </svg>
+  )
+}
+
+function CalendarIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" {...props}>
+      <rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" strokeWidth="1.8" />
+      <path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+    </svg>
+  )
 }
 
 function LogoutIcon(props: SVGProps<SVGSVGElement>) {
